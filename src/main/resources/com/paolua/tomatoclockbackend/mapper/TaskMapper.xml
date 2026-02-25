@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paolua.tomatoclockbackend.mapper.TaskMappler">
+
+    <!-- Task结果映射 -->
+    <resultMap id="TaskResultMap" type="Task">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="taskName" column="task_name"/>
+        <result property="taskType" column="task_type"/>
+        <result property="totalTomatoNum" column="total_tomato_num"/>
+        <result property="tomatoDuration" column="tomato_duration"/>
+        <result property="restDuration" column="rest_duration"/>
+        <result property="deadline" column="deadline"/>
+        <result property="completedTomatoNum" column="completed_tomato_num"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 根据用户ID查询任务列表 -->
+    <select id="getTomatoTaskListByUserId" resultMap="TaskResultMap">
+        select 
+            t.id,
+            t.user_id,
+            t.task_name,
+            t.task_type,
+            t.total_tomato_num,
+            t.tomato_duration,
+            t.rest_duration,
+            t.deadline,
+            t.completed_tomato_num,
+            t.status,
+            t.create_time,
+            t.update_time
+        from
+            task as t
+                left join user as u on t.user_id = u.id
+        where
+            u.id = #{userId}
+        order by
+            t.create_time
+    </select>
+
+</mapper>

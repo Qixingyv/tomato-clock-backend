@@ -18,3 +18,38 @@ mybatis:
     map-underscore-to-camel-case: true
     # 日志实现
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# JWT配置
+jwt:
+  # JWT密钥（生产环境应使用更长的密钥，建议从环境变量读取）
+  secret: tomato-clock-secret-key-for-production-use-2026-spring-boot-application-recommended-min-256-bits
+  # Token过期时间（毫秒）默认7天
+  expiration: 604800000
+  # 开发环境是否每次启动生成新密钥（生产环境设为false）
+  generate-key-on-start: false
+
+# 微信登录配置
+wechat:
+  appid: ${WECHAT_APPID:your-wechat-appid}
+  secret: ${WECHAT_SECRET:your-wechat-secret}
+
+# 华为登录配置
+huawei:
+  client-id: ${HUAWEI_CLIENT_ID:your-huawei-client-id}
+  client-secret: ${HUAWEI_CLIENT_SECRET:your-huawei-client-secret}
+  authorization-url: https://oauth-login.cloud.huawei.com/oauth2/v3/authorize
+  token-url: https://oauth-login.cloud.huawei.com/oauth2/v3/token
+  user-info-url: https://account.cloud.huawei.com/restful/userInfo
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.paolua.tomatoclockbackend: DEBUG
+    com.paolua.tomatoclockbackend.mapper: DEBUG

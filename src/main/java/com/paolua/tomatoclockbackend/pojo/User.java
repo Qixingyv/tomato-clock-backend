@@ -34,6 +34,11 @@ public class User {
     private String wechatOpenid;
 
     /**
+     * 华为UID（登录用），唯一
+     */
+    private String huaweiUid;
+
+    /**
      * 用户昵称
      */
     private String nickname;
